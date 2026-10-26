@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: nonprod
+  namespace: argocd
+spec:
+  description: Dev and staging environments
+  sourceRepos:
+    - https://github.com/Djainesh/argo-lab-app.git
+  destinations:
+    - server: https://kubernetes.default.svc
+      namespace: webapp-dev
+    - server: https://kubernetes.default.svc
+      namespace: webapp-staging
+    - server: https://kubernetes.default.svc
+      namespace: webapp-helm-dev
+    - server: https://kubernetes.default.svc
+      namespace: webapp-helm-staging
+  clusterResourceWhitelist:
+    - group: ''
+      kind: Namespace
