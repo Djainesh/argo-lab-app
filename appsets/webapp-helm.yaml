@@ -8,13 +8,16 @@ spec:
     - list:
         elements:
           - env: dev
+            project: nonprod
           - env: staging
+            project: nonprod
           - env: prod
+            project: prod
   template:
     metadata:
       name: 'webapp-helm-{{env}}'
     spec:
-      project: default
+      project: '{{project}}'
       source:
         repoURL: https://github.com/Djainesh/argo-lab-app.git
         targetRevision: main
